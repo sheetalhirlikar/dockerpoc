@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  db1:
+    image: mariadb:latest
+    environment:
+      MARIADB_ROOT_PASSWORD: lic4974
+      MARIADB_DATABASE: licensing
+      MARIADB_USER: test
+      MARIADB_PASSWORD: lic4974
+    volumes:
+      - db1_data:/var/lib/mysql
+      - ./init-scripts1:/docker-entrypoint-initdb.d
+
+  db2:
+    image: mariadb:latest
+    environment:
+      MARIADB_ROOT_PASSWORD: lic4974
+      MARIADB_DATABASE: pricebook
+      MARIADB_USER: test
+      MARIADB_PASSWORD: lic4974
+    volumes:
+      - db2_data:/var/lib/mysql
+      - ./init-scripts2:/docker-entrypoint-initdb.d
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
+    depends_on:
+      - db1
+      - db2
+
+volumes:
+  db1_data:
+  db2_data:
