@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-rt!xo1hp7jd+b4^k$^6%!=k2q2k=4wsi45mlkm5g70ra4kg9ly
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'alr'
 ]
 
 MIDDLEWARE = [
@@ -74,16 +76,24 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    #'default': {
-    #    'ENGINE': 'django.db.backends.sqlite3',
-    #    'NAME': BASE_DIR / 'db.sqlite3',
-    #}
+   #  'default': {
+   #     'ENGINE': 'django.db.backends.mysql',
+   #     'NAME': BASE_DIR / 'db.sqlite3',
+   # },
      'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'licensing',
         'USER': 'root',
         'PASSWORD': 'lic4974',
-        'HOST': 'db1',
+        'HOST': 'db1',#'172.20.0.3',
+        'PORT': 3306,
+    },
+     'pricebookdb': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'pricebook',
+        'USER': 'root',
+        'PASSWORD': 'lic4974',
+        'HOST': 'db2',#'172.20.0.2',
         'PORT': 3306,
     }
 
