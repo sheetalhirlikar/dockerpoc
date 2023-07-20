@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -y
 
-RUN apt-get install -y nginx git python3-setuptools python3-dev python3-pip
+RUN apt-get install -y nginx git python3-setuptools python3-dev python3-pip python3-mysqldb default-libmysqlclient-dev build-essential
 
 WORKDIR /usr/src
 
@@ -17,6 +17,8 @@ RUN  apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install django
+
+RUN pip3 install mysqlclient
 
 WORKDIR mysite
 

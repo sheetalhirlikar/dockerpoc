@@ -6,7 +6,7 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: lic4974
       MARIADB_DATABASE: licensing
-      MARIADB_USER: test
+      MARIADB_USER: licensing
       MARIADB_PASSWORD: lic4974
     volumes:
       - db1_data:/var/lib/mysql
@@ -17,7 +17,7 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: lic4974
       MARIADB_DATABASE: pricebook
-      MARIADB_USER: test
+      MARIADB_USER: licensing
       MARIADB_PASSWORD: lic4974
     volumes:
       - db2_data:/var/lib/mysql
@@ -32,6 +32,12 @@ services:
     depends_on:
       - db1
       - db2
+    environment:
+      - DB_HOST=db1
+      - DB_PORT=3306
+      - DB_NAME=licensing
+      - DB_USER=root
+      - DB_PASSWORD=lic4974
 
 volumes:
   db1_data:
